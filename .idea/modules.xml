@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Yenguema.iml" filepath="$PROJECT_DIR$/.idea/modules/Yenguema.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Yenguema.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Yenguema.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Yenguema.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Yenguema.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Yenguema.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Yenguema.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Yenguema.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Yenguema.app.unitTest.iml" />
+    </modules>
+  </component>
+</project>

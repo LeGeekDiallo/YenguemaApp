@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Yenguema</string>
+    <string name="home_title">When life become easy by click</string>
+    <string name="sprest">SPrest</string>
+    <string name="makiti">Kâ Makiti</string>
+    <string name="Ka_Doudhal">Ka Doudhal</string>
+    <string name="jobs_title">Jobs</string>
+    <string name="park_auto">Park Auto</string>
+    <string name="carpooling">Transport</string>
+    <string name="estate">Immobilier</string>
+    <string name="home">Home</string>
+    <string name="account">Compte</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forget_passwd">Mot de passe oublié</string>
+    <string name="new_user">S\'inscire</string>
+    <string name="LogIn">Se connecter</string>
+    <string name="logInActivity">Connexion</string>
+    <string name="signInActivity">Inscription</string>
+    <string name="gender_label">Vous êtes</string>
+    <string name="male">H</string>
+    <string name="female">F</string>
+    <string name="username">Nom complet</string>
+    <string name="confirm_passwd">Confirmer le password</string>
+    <string name="phone_number">Mobile ex:6xxxxxxxx</string>
+    <string name="signIn">S\'incrire</string>
+    <string name="err_email">Renseignez votre email</string>
+    <string name="err_name">Renseignez votre nom complet</string>
+    <string name="err_pass">Renseignez votre MDP</string>
+    <string name="err_passC">Les deux MDP sont différents</string>
+    <string name="err_phone">Renseignez votre numéro</string>
+    <string name="err_phone_reg">Numéro non valide</string>
+</resources>

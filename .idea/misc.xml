@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3495" />
+        <entry key="app/src/main/res/drawable-v24/login_foreground.xml" value="0.289" />
+        <entry key="app/src/main/res/drawable/custom_input.xml" value="0.2645" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3495" />
+        <entry key="app/src/main/res/drawable/new_user_background.xml" value="0.289" />
+        <entry key="app/src/main/res/drawable/park_auto_background.xml" value="0.3495" />
+        <entry key="app/src/main/res/drawable/park_auto_foreground.xml" value="0.3495" />
+        <entry key="app/src/main/res/drawable/real_estate_background.xml" value="0.3495" />
+        <entry key="app/src/main/res/drawable/yenguema_ic_background.xml" value="0.3495" />
+        <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.29438405797101447" />
+        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.33016304347826086" />
+        <entry key="app/src/main/res/menu/login_menu.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/menu/main_menu.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/menu/signin_menu.xml" value="0.346875" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/park_auto.xml" value="0.1855" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/park_auto_round.xml" value="0.1855" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
