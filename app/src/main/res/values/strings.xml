@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Yenguema</string>
     <string name="home_title">When life become easy by click</string>
-    <string name="sprest">SPrest</string>
+    <string name="sprest">PrestS</string>
     <string name="makiti">Kâ Makiti</string>
     <string name="Ka_Doudhal">Ka Doudhal</string>
     <string name="jobs_title">Jobs</string>
@@ -30,4 +30,10 @@
     <string name="err_passC">Les deux MDP sont différents</string>
     <string name="err_phone">Renseignez votre numéro</string>
     <string name="err_phone_reg">Numéro non valide</string>
+    <string name="no_email">No account linked with this email</string>
+    <string name="bad_pwd">Invalid password</string>
+    <string name="credentials">USER_CREDENTIALS_SHARED</string>
+    <string name="user_email_shared">USER_EMAIL_SHARED</string>
+    <string name="user_passwd_shared">USER_PASSWORD_SHARED</string>
+    <string name="profile">Profile</string>
 </resources>

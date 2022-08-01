@@ -1,5 +1,6 @@
 package project.yenguema.yenguema.services
 
+import project.yenguema.yenguema.library.LogInRespWrapper
 import project.yenguema.yenguema.library.SignInRespWrapper
 import retrofit2.Call
 import retrofit2.http.GET
@@ -15,4 +16,10 @@ interface YenguemaService {
         @Query("password")password:String,
         @Query("phoneNumber")phoneNumber:String
     ):Call<SignInRespWrapper>
+
+    @GET("security/login_app")
+    fun logInQuery(
+        @Query("email")email: String,
+        @Query("password")password:String
+    ):Call<LogInRespWrapper>
 }

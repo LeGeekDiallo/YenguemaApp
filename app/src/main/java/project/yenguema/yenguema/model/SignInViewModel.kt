@@ -53,7 +53,7 @@ class SignInViewModel(application: Application):AndroidViewModel(application) {
                 }
 
                 override fun onFailure(call: Call<SignInRespWrapper>, t: Throwable) {
-                    resp.value = null
+                    resp.value = SignInResponse("error", false, "error", "error")
                 }
 
             })

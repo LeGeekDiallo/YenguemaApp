@@ -27,7 +27,7 @@ class SignInActivity : AppCompatActivity() {
         setContentView(view)
 
         supportActionBar?.title = getString(R.string.signInActivity)
-        signInViewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
+        signInViewModel = ViewModelProvider(this)[SignInViewModel::class.java]
         gender = getGender()
 
         binding.signBtn.setOnClickListener {
@@ -82,14 +82,17 @@ class SignInActivity : AppCompatActivity() {
     }
     private fun signIn(gender:String?) {
         val form = formControl()
-        Toast.makeText(this, gender, Toast.LENGTH_LONG).show()
         if (gender != null && form.flag) {
-            Toast.makeText(this, gender+ form.email, Toast.LENGTH_LONG).show()
             signInViewModel.newUser(gender, form.email, form.username, form.password, form.phoneNumber).observe(this) { resp ->
+                binding.signBtn.isEnabled = false
                 if (resp!=null && resp.registered) {
                     Toast.makeText(this, resp.response, Toast.LENGTH_LONG).show()
+                    val intent = Intent(this, LogInActivity::class.java)
+                    startAnActivity(intent)
+                    finish()
                 } else {
-                    Toast.makeText(this, null, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, resp.response, Toast.LENGTH_LONG).show()
+                    binding.signBtn.isEnabled = true
                 }
             }
         }

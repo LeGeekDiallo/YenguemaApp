@@ -11,5 +11,16 @@ data class SignInResponse(
     val password:String,
 )
 
-const val baseURLDev = "https://127.0.0.1:8000/"
+data class LogInRespWrapper(
+    val resp: LogInResponse
+)
 
+data class LogInResponse(
+    val logIn: Boolean?,
+    val u_id: Int?,
+    val email: String?,
+    val usergender: Int?,
+    val avatar: String?,
+    val avatar_URL: String?
+)
+const val baseURLDev = "https://www.leyenguema.com/"
