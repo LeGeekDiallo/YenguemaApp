@@ -36,4 +36,5 @@
     <string name="user_email_shared">USER_EMAIL_SHARED</string>
     <string name="user_passwd_shared">USER_PASSWORD_SHARED</string>
     <string name="profile">Profile</string>
+    <string name="login_txt">Connexion</string>
 </resources>
