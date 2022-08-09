@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable-v24/login_foreground.xml" value="0.289" />
         <entry key="app/src/main/res/drawable/custom_input.xml" value="0.2645" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3495" />
+        <entry key="app/src/main/res/drawable/img_customized.xml" value="0.3305" />
         <entry key="app/src/main/res/drawable/new_user_background.xml" value="0.289" />
         <entry key="app/src/main/res/drawable/park_auto_background.xml" value="0.3495" />
         <entry key="app/src/main/res/drawable/park_auto_foreground.xml" value="0.3495" />
@@ -16,9 +17,12 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.29438405797101447" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.33016304347826086" />
         <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.33016304347826086" />
+        <entry key="app/src/main/res/layout/fragment_user_dashboard.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/services_item.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/menu/login_menu.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/menu/main_menu_log_in.xml" value="0.346875" />
+        <entry key="app/src/main/res/menu/profile_menu.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/menu/signin_menu.xml" value="0.346875" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/park_auto.xml" value="0.1855" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/park_auto_round.xml" value="0.1855" />

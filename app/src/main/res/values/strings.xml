@@ -7,7 +7,7 @@
     <string name="jobs_title">Jobs</string>
     <string name="park_auto">Park Auto</string>
     <string name="carpooling">Transport</string>
-    <string name="estate">Immobilier</string>
+    <string name="estate">Agent</string>
     <string name="home">Home</string>
     <string name="account">Compte</string>
     <string name="email">Email</string>
@@ -37,4 +37,14 @@
     <string name="user_passwd_shared">USER_PASSWORD_SHARED</string>
     <string name="profile">Profile</string>
     <string name="login_txt">Connexion</string>
+    <string name="hello">Hello,</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="sale">Sale</string>
+    <string name="teaching">Teaching</string>
+    <string name="apply">Apply</string>
+    <string name="car_dealership">Dealership</string>
+    <string name="logOut">LogOut</string>
+    <string name="activities">Activities</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

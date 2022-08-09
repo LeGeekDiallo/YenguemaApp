@@ -111,12 +111,13 @@
                     android:id="@+id/ka_doudhal_title"
                     style="@style/ServicesItem"
                     />
+
                 <ImageView
                     android:id="@+id/ka_doudhal_img"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    android:src="@drawable/doudhal"
-                    android:layout_below="@+id/ka_doudhal_title" />
+                    android:layout_below="@+id/ka_doudhal_title"
+                    android:src="@drawable/doudhal" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
