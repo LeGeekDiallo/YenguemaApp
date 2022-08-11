@@ -10,7 +10,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import project.yenguema.yenguema.library.LogInRespWrapper
 import project.yenguema.yenguema.library.LogInResponse
-import project.yenguema.yenguema.library.baseURLDev
+import project.yenguema.yenguema.library.baseURL
 import project.yenguema.yenguema.services.YenguemaService
 import project.yenguema.yenguema.services.logInDataResponse
 import retrofit2.Call
@@ -32,7 +32,7 @@ class LogInViewModel(app: Application):AndroidViewModel(app) {
             .build()
         retrofit = Retrofit.Builder()
             .client(httpClient)
-            .baseUrl(baseURLDev)
+            .baseUrl(baseURL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

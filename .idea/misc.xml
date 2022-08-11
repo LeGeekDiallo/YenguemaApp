@@ -17,7 +17,10 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.29438405797101447" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.33016304347826086" />
         <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.33016304347826086" />
+        <entry key="app/src/main/res/layout/fragment_prest_s.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_user_dashboard.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/fragment_user_info.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/image_item.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/services_item.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/menu/login_menu.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.34791666666666665" />

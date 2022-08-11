@@ -5,55 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.UserProfileActivity">
-    <ScrollView
-        android:padding="7dp"
+    <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_marginTop="60dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/hello_user"
-                android:text="@string/hello"
-                style="@style/HomeTitle"
-                android:padding="5dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/user_name"
-                android:text="@string/username"
-                app:layout_constraintLeft_toRightOf="@+id/hello_user"
-                android:padding="5dp"
-                style="@style/HomeTitle"
-                app:layout_constraintTop_toTopOf="parent"/>
-            <ImageView
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:id="@+id/user_av"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/user_av_default"
-                android:background="@drawable/img_customized"
-                android:focusable="true"
-                android:clickable="true"/>
-
-            <androidx.fragment.app.FragmentContainerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toBottomOf="@+id/user_av"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="10dp"
-                android:id="@+id/dashboard_items"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/dashboard_items"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

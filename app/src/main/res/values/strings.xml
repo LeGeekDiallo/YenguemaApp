@@ -47,4 +47,7 @@
     <string name="activities">Activities</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dashboard_title">Your dashboard</string>
+    <string name="user_info">Your personals infos</string>
+    <string name="edit">Edit</string>
 </resources>

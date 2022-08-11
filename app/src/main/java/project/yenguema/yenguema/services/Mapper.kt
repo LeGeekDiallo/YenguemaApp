@@ -1,10 +1,25 @@
 package project.yenguema.yenguema.services
 
-import project.yenguema.yenguema.library.LogInRespWrapper
-import project.yenguema.yenguema.library.LogInResponse
-import project.yenguema.yenguema.library.SignInRespWrapper
+import project.yenguema.yenguema.library.*
 import project.yenguema.yenguema.tools.SignInResponse
 
+fun getUserInfoResponse(respWrapper: UserInfosRespWrapper):UserInfos{
+    return UserInfos(
+        respWrapper.resp.user_infos,
+        respWrapper.resp.carShops,
+        respWrapper.resp.trips_posted,
+        respWrapper.resp.prestS,
+        respWrapper.resp.ads_posted,
+        respWrapper.resp.aparts_posted,
+        respWrapper.resp.officeShopLand_posted,
+        respWrapper.resp.taxi,
+        respWrapper.resp.studios_posted,
+        respWrapper.resp.houses_posted,
+        respWrapper.resp.jobs_posted,
+        respWrapper.resp.jobs_applied,
+        respWrapper.resp.courses_posted
+    )
+}
 fun mapYenguemaLibraryDataToUser(respWrapper: SignInRespWrapper):SignInResponse{
     return SignInResponse(
         respWrapper.resp.response,

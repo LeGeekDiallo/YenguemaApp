@@ -2,6 +2,7 @@ package project.yenguema.yenguema.services
 
 import project.yenguema.yenguema.library.LogInRespWrapper
 import project.yenguema.yenguema.library.SignInRespWrapper
+import project.yenguema.yenguema.library.UserInfosRespWrapper
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -22,4 +23,9 @@ interface YenguemaService {
         @Query("email")email: String,
         @Query("password")password:String
     ):Call<LogInRespWrapper>
+
+    @GET("user_infos?")
+    fun getUserInfos(
+        @Query("email")email: String
+    ):Call<UserInfosRespWrapper>
 }

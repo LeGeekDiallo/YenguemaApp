@@ -5,13 +5,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.UserDashboard">
+    android:layout_marginTop="50dp"
+    tools:context=".fragments.DashboardFragment">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hello_user"
+        android:text="@string/hello"
+        style="@style/HomeTitle"
+        android:padding="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/user_name"
+        android:text="@string/username"
+        app:layout_constraintLeft_toRightOf="@+id/hello_user"
+        android:padding="5dp"
+        style="@style/HomeTitle"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/user_av"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/user_av_default"
+        android:background="@drawable/img_customized"
+        android:focusable="true"
+        android:clickable="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dashboard_title"
+        app:layout_constraintTop_toBottomOf="@+id/user_av"
+        android:layout_marginTop="10dp"
+        android:text="@string/dashboard_title"
+        android:padding="5dp"
+        style="@style/LogInText"
+        app:layout_constraintStart_toStartOf="parent"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboard_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/services_item"
         android:id="@+id/dashboard_items_recyclerview"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

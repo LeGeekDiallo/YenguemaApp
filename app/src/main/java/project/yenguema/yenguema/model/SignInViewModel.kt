@@ -1,7 +1,6 @@
 package project.yenguema.yenguema.model
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -9,9 +8,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import project.yenguema.yenguema.entity.User
 import project.yenguema.yenguema.library.SignInRespWrapper
-import project.yenguema.yenguema.library.baseURLDev
+import project.yenguema.yenguema.library.baseURL
 import project.yenguema.yenguema.services.YenguemaService
 import project.yenguema.yenguema.services.mapYenguemaLibraryDataToUser
 import project.yenguema.yenguema.tools.SignInResponse
@@ -34,7 +32,7 @@ class SignInViewModel(application: Application):AndroidViewModel(application) {
             .build()
         retrofit = Retrofit.Builder()
             .client(httpClient)
-            .baseUrl(baseURLDev)
+            .baseUrl(baseURL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
