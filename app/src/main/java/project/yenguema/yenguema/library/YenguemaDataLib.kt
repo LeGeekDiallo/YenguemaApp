@@ -57,7 +57,9 @@ data class PrestS(
     val city:String,
     val municipality:String,
     val images: Array<String>,
-    val imagesURL: String
+    val imagesURL: String,
+    val likes:Int?,
+    val unlikes:Int?
 )
 data class Ad(
     val id:Int,

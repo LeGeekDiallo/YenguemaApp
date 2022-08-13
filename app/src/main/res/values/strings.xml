@@ -50,4 +50,11 @@
     <string name="dashboard_title">Your dashboard</string>
     <string name="user_info">Your personals infos</string>
     <string name="edit">Edit</string>
+    <string name="address">Address</string>
+    <string name="city">City :</string>
+    <string name="municipality">Municipality :</string>
+    <string name="district">District</string>
+    <string name="contact">Contact</string>
+    <string name="p_phone_number">Phone Number :</string>
+    <string name="fab_content_desc">Edit</string>
 </resources>

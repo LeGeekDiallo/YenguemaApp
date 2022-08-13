@@ -5,8 +5,11 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3495" />
         <entry key="app/src/main/res/drawable-v24/login_foreground.xml" value="0.289" />
+        <entry key="app/src/main/res/drawable/active_dot.xml" value="0.317" />
         <entry key="app/src/main/res/drawable/custom_input.xml" value="0.2645" />
+        <entry key="app/src/main/res/drawable/ic_edit.xml" value="0.317" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3495" />
+        <entry key="app/src/main/res/drawable/ic_unlike.xml" value="0.317" />
         <entry key="app/src/main/res/drawable/img_customized.xml" value="0.3305" />
         <entry key="app/src/main/res/drawable/new_user_background.xml" value="0.289" />
         <entry key="app/src/main/res/drawable/park_auto_background.xml" value="0.3495" />
@@ -21,6 +24,7 @@
         <entry key="app/src/main/res/layout/fragment_user_dashboard.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_user_info.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/image_item.xml" value="0.35520833333333335" />
+        <entry key="app/src/main/res/layout/list_prests_images.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/layout/services_item.xml" value="0.35520833333333335" />
         <entry key="app/src/main/res/menu/login_menu.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.34791666666666665" />

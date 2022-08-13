@@ -54,7 +54,6 @@ class DashboardFragment : Fragment(), View.OnClickListener {
 
         dashboardAdapter.newActivityListener = object : DashboardAdapter.NewActivityByService{
             override fun newActivityByService(serviceName: String) {
-                Toast.makeText(context, serviceName, Toast.LENGTH_SHORT).show()
                 launchServiceItem(serviceName)
             }
         }
