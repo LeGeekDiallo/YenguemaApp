@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.NoPrestSYetFragment">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:src="@drawable/service_man"
+        android:id="@+id/new_prest_s_img"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/service_man_provider"/>
+    <TextView
+        app:layout_constraintTop_toBottomOf="@+id/new_prest_s_img"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/new_prest_s_title"
+        android:text="@string/new_prest_s"
+        android:padding="10dp"
+        android:gravity="center"
+        style="@style/SimpleText"/>
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="@string/new_s_provider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_prest_s_title"
+        android:id="@+id/registration"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

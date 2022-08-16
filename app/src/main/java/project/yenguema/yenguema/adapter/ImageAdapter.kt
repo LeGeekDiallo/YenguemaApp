@@ -36,5 +36,6 @@ class ImageAdapter: RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
 
     fun setImagesList(imgURL:List<String>){
         imgURLList = imgURL
+        notifyDataSetChanged()
     }
 }

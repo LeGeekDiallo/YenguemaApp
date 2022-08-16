@@ -1,7 +1,32 @@
 package project.yenguema.yenguema.library
 
+import android.os.Parcelable
+import android.text.InputType.TYPE_CLASS_PHONE
+import android.widget.EditText
+import kotlinx.parcelize.Parcelize
+import project.yenguema.yenguema.entity.Ad
+import project.yenguema.yenguema.entity.PrestS
 import project.yenguema.yenguema.entity.User
+import java.util.regex.Pattern
 
+private val PHONNUMBERPARTTERN: Pattern = Pattern.compile("^[6][2-9][0-9][0-9]{2}[0-9]{2}[0-9]{2}\$")
+
+private fun phoneNumberCheck(input:EditText):Boolean{
+    return PHONNUMBERPARTTERN.matcher(input.text.toString().trim()).matches()
+}
+fun formController(emptyMsg:String, wrongFormat:String, vararg inputs:EditText):Boolean{
+    for (input in inputs){
+        if(input.text.isEmpty()){
+            input.error = emptyMsg
+            return false
+        }
+        if(input.inputType == TYPE_CLASS_PHONE && !phoneNumberCheck(input)){
+            input.error = wrongFormat
+            return false
+        }
+    }
+    return true
+}
 data class SignInRespWrapper(
     val resp: SignInResponse
 )
@@ -45,49 +70,12 @@ data class UserInfos(
     val courses_posted:Array<String>?
 ) {
 }
-data class PrestS(
-    val id: Int,
-    val activity_name: String,
-    val category:String,
-    val address:String,
-    val email:String,
-    val phone_number: String,
-    val details: String,
-    val createdAt: CreatedAt,
-    val city:String,
-    val municipality:String,
-    val images: Array<String>,
-    val imagesURL: String,
-    val likes:Int?,
-    val unlikes:Int?
-)
-data class Ad(
-    val id:Int,
-    val adTitle: String,
-    val adPrice: String,
-    val adCategory: String,
-    val adType: String,
-    val brand: String?,
-    val model: String?,
-    val mileage: String?,
-    val year:CreatedAt?,
-    val city:String,
-    val municipality:String,
-    val address:String,
-    val email:String,
-    val phoneNumber:String,
-    val details:String,
-    val createdAt: CreatedAt,
-    val vehicle_type:String?,
-    val adState:String,
-    val transmission_type: String,
-    val images: Array<String>,
-    val imagesURL: String
-)
 
+
+@Parcelize
 data class CreatedAt(
     val date:String,
     val timezone_type: Int,
     val timezone:String
-)
+):Parcelable
 const val baseURL = "https://www.leyenguema.com/"

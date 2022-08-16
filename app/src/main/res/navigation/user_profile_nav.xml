@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_profile_nav"
+    app:startDestination="@id/dashboardFragment">
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="project.yenguema.yenguema.fragments.DashboardFragment"
+        android:label="fragment_user_dashboard"
+        tools:layout="@layout/fragment_user_dashboard" >
+        <action
+            android:id="@+id/navigate_to_userInfoFragment"
+            app:destination="@id/userInfoFragment" />
+        <action
+            android:id="@+id/navigate_to_prestSFragment"
+            app:destination="@id/prestSFragment" />
+        <action
+            android:id="@+id/navigate_to_noPrestSYetFragment"
+            app:destination="@id/noPrestSYetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userInfoFragment"
+        android:name="project.yenguema.yenguema.fragments.UserInfoFragment"
+        android:label="fragment_user_info"
+        tools:layout="@layout/fragment_user_info" >
+        <argument
+            android:name="user"
+            app:argType="project.yenguema.yenguema.entity.User" />
+    </fragment>
+    <fragment
+        android:id="@+id/prestSFragment"
+        android:name="project.yenguema.yenguema.fragments.PrestSFragment"
+        android:label="fragment_prest_s"
+        tools:layout="@layout/fragment_prest_s" >
+        <action
+            android:id="@+id/navigate_to_editPrestSFragment"
+            app:destination="@id/editPrestSFragment" />
+        <argument
+            android:name="prestS"
+            app:argType="project.yenguema.yenguema.entity.PrestS" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPrestSFragment"
+        android:name="project.yenguema.yenguema.fragments.EditPrestSFragment"
+        android:label="fragment_edit_prest_s"
+        tools:layout="@layout/fragment_edit_prest_s" >
+        <argument
+            android:name="prest"
+            app:argType="project.yenguema.yenguema.entity.PrestS" />
+        <action
+            android:id="@+id/go_back_to_prestSFragment"
+            app:destination="@id/prestSFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noPrestSYetFragment"
+        android:name="project.yenguema.yenguema.fragments.NoPrestSYetFragment"
+        android:label="fragment_no_prest_s_yet"
+        tools:layout="@layout/fragment_no_prest_s_yet" >
+        <argument
+            android:name="user"
+            app:argType="project.yenguema.yenguema.entity.User" />
+        <action
+            android:id="@+id/navigate_to_newPrestSFragment"
+            app:destination="@id/newPrestSFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newPrestSFragment"
+        android:name="project.yenguema.yenguema.fragments.NewPrestSFragment"
+        android:label="fragment_new_prest_s"
+        tools:layout="@layout/fragment_new_prest_s" >
+        <argument
+            android:name="user_id"
+            app:argType="string" />
+        <action
+            android:id="@+id/navigate_from_newPrestSFragment_to_choosePrestSImagesFragment"
+            app:destination="@id/choosePrestSImagesFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/choosePrestSImagesFragment"
+        android:name="project.yenguema.yenguema.fragments.ChoosePrestSImagesFragment"
+        android:label="fragment_choose_prest_s_images"
+        tools:layout="@layout/fragment_choose_prest_s_images" >
+        <argument
+            android:name="prestS"
+            app:argType="project.yenguema.yenguema.entity.NewPrestS" />
+    </fragment>
+</navigation>

@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
 import com.squareup.picasso.Picasso
 import project.yenguema.yenguema.R
 import project.yenguema.yenguema.databinding.FragmentUserInfoBinding
@@ -34,7 +35,7 @@ class UserInfoFragment : Fragment() {
         val userAv = view.findViewById<ImageView>(R.id.user_av)
         val userEmail = view.findViewById<EditText>(R.id.user_email)
         val userPhone = view.findViewById<EditText>(R.id.user_phone_number)
-        val user = data!!.user_infos
+        val user = data?.user_infos!!
         username.text = user.name
         userName.setText(user.name)
         userEmail.setText(user.email)

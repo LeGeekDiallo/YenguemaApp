@@ -306,7 +306,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/edit_note/baseline_edit_note_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/category/baseline_category_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -316,8 +316,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_edit" />
+                            <entry key="color" value="0d41a1" />
+                            <entry key="outputName" value="ic_category" />
                           </map>
                         </option>
                       </PersistentState>

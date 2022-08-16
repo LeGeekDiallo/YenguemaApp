@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Yenguema"
         tools:targetApi="31">
         <activity
+            android:name=".activities.PrestSActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.UserProfileActivity"
             android:exported="false" />
         <activity

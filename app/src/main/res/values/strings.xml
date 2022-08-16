@@ -50,11 +50,44 @@
     <string name="dashboard_title">Your dashboard</string>
     <string name="user_info">Your personals infos</string>
     <string name="edit">Edit</string>
-    <string name="address">Address</string>
+    <string name="address">Provide the address of your work place</string>
     <string name="city">City :</string>
     <string name="municipality">Municipality :</string>
     <string name="district">District</string>
-    <string name="contact">Contact</string>
+    <string name="contact">Provide your contact</string>
     <string name="p_phone_number">Phone Number :</string>
     <string name="fab_content_desc">Edit</string>
+    <string name="title">Title/Name</string>
+    <string name="details">More details about your service</string>
+    <string name="images">Images</string>
+    <string name="new_prest_s">If you are a service provider, you are in the right place to make your activity more benefit by register it here. Click on the button bellow. Your activity will be published on the platform just after the registration process</string>
+    <string name="new_s_provider">Registration</string>
+    <string name="service_man_provider">Service provider</string>
+    <string name="category">Choose the category</string>
+    <string name="registration">Validate</string>
+    <string name="new_registration">New Service provider</string>
+    <string name="workplace_address">Address</string>
+    <string name="workplace_contact">Contact</string>
+    <string name="emptyInput">This field should not be empty</string>
+    <string name="wrongFormat">The phone number format is not valid</string>
+    <string name="add_images">Last step, choose and add images of your work or a logo of your company. You can choose more than one image</string>
+    <string-array name="prests_category">
+        <item>Artisanat</item>
+        <item>Blanchisseur</item>
+        <item>Boulangerie</item>
+        <item>Boutiquier</item>
+        <item>Briqueterie</item>
+        <item>Climatisation</item>
+        <item>Cordonniers</item>
+        <item>Déménagement</item>
+        <item>Electriciens</item>
+        <item>Depannage</item>
+        <item>Maçonnerie</item>
+        <item>Menuisier</item>
+        <item>Menuisier-metal</item>
+        <item>Plomberie</item>
+        <item>Coiffeur/se</item>
+        <item>Couture</item>
+        <item>Reparateur</item>
+    </string-array>
 </resources>

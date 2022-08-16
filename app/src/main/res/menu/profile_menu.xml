@@ -6,10 +6,6 @@
         android:title="@string/home"
         android:icon="@drawable/ic_home_24"
         app:showAsAction="ifRoom"/>
-    <item android:id="@+id/user_activities"
-        android:title="@string/activities"
-        android:icon="@drawable/ic_user_act"
-        app:showAsAction="ifRoom"/>
     <item android:id="@+id/logOut"
         android:title="@string/logOut"
         android:icon="@drawable/ic_logout"

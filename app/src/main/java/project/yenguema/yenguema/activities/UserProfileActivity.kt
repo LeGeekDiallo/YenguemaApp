@@ -8,9 +8,14 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.core.view.setPadding
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 import project.yenguema.yenguema.R
 import project.yenguema.yenguema.databinding.ActivityUserProfileBinding
@@ -21,10 +26,9 @@ import project.yenguema.yenguema.model.ProfileViewModel
 
 class UserProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserProfileBinding
-    private lateinit var sharedPref: SharedPreferences
     private val profileViewModel: ProfileViewModel by viewModels()
+    private lateinit var sharedPref: SharedPreferences
     private var email: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserProfileBinding.inflate(layoutInflater)
@@ -33,57 +37,10 @@ class UserProfileActivity : AppCompatActivity() {
 
         supportActionBar?.title = getString(R.string.profile)
         sharedPref = getSharedPreferences(getString(R.string.credentials), Context.MODE_PRIVATE)
-
-        val dashboardFragment = DashboardFragment()
-        if(savedInstanceState == null){
-            supportFragmentManager.beginTransaction()
-                .setReorderingAllowed(true)
-                .add(R.id.dashboard_items, dashboardFragment)
-                .commit()
-        }
         email = sharedPref.getString(getString(R.string.user_email_shared), null)
-        dashboardFragment.onClickListener = object : DashboardFragment.OnClickListener{
-            override fun userPersonalInfo() {
-                userInfoFragment()
-            }
 
-            override fun launchServiceFragment(serviceName: String) {
-                when (serviceName){
-                    "PrestS"->{
-                        prestSFragment()
-                    }
-                }
-            }
-        }
     }
 
-    private fun prestSFragment() {
-        supportFragmentManager.commit {
-            setCustomAnimations(
-                R.anim.slide_in,
-                R.anim.fade_out,
-                R.anim.fade_in,
-                R.anim.slide_out
-            )
-            replace<PrestSFragment>(R.id.dashboard_items)
-            setReorderingAllowed(true)
-            addToBackStack(null)
-        }
-    }
-
-    private fun userInfoFragment() {
-        supportFragmentManager.commit {
-            setCustomAnimations(
-                R.anim.slide_in,
-                R.anim.fade_out,
-                R.anim.fade_in,
-                R.anim.slide_out
-            )
-            replace<UserInfoFragment>(R.id.dashboard_items)
-            setReorderingAllowed(true)
-            addToBackStack(null)
-        }
-    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.profile_menu, menu)
@@ -104,10 +61,6 @@ class UserProfileActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startAnActivity(intent)
                 finish()
-                true
-            }
-            R.id.user_activities->{
-                userInfoFragment()
                 true
             }
             else->false
