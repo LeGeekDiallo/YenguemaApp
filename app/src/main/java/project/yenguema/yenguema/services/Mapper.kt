@@ -1,7 +1,15 @@
 package project.yenguema.yenguema.services
 
 import project.yenguema.yenguema.library.*
-import project.yenguema.yenguema.tools.SignInResponse
+import project.yenguema.yenguema.utils.SignInResponse
+
+
+
+fun changeUserAvatarRespMapper(respWrapper: ChangeUserAvatarRespWrapper):ChangeUserAvatarResponse{
+    return ChangeUserAvatarResponse(
+        respWrapper.resp.status
+    )
+}
 
 fun getUserInfoResponse(respWrapper: UserInfosRespWrapper):UserInfos{
     return UserInfos(
@@ -29,6 +37,9 @@ fun mapYenguemaLibraryDataToUser(respWrapper: SignInRespWrapper):SignInResponse{
     )
 }
 
+fun newPrestSResponse(respWrapper: NewPrestSRespWrapper):NewPrestSResponse{
+    return NewPrestSResponse(respWrapper.resp.status)
+}
 fun logInDataResponse(respWrapper: LogInRespWrapper):LogInResponse{
     if (respWrapper.resp.logIn == null){
         return LogInResponse(

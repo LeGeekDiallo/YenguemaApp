@@ -12,7 +12,7 @@ import project.yenguema.yenguema.library.SignInRespWrapper
 import project.yenguema.yenguema.library.baseURL
 import project.yenguema.yenguema.services.YenguemaService
 import project.yenguema.yenguema.services.mapYenguemaLibraryDataToUser
-import project.yenguema.yenguema.tools.SignInResponse
+import project.yenguema.yenguema.utils.SignInResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

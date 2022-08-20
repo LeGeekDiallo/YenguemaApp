@@ -46,8 +46,8 @@ class NewPrestSFragment : Fragment(), AdapterView.OnItemSelectedListener {
             binding.prestsCategory.adapter = it
         }
         binding.prestsCategory.onItemSelectedListener = this
-        binding.registerBtn.setOnClickListener {
-            if(formController(
+        binding.nextBtn.setOnClickListener {
+            /*if(formController(
                     getString(R.string.emptyInput),
                     getString(R.string.wrongFormat),
                     binding.prestsTitle,
@@ -59,6 +59,7 @@ class NewPrestSFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     binding.details)){
                     val action = NewPrestSFragmentDirections.navigateFromNewPrestSFragmentToChoosePrestSImagesFragment(
                         NewPrestS(
+                            args.userId,
                             binding.prestsTitle.text.toString(),
                             category,
                             binding.email.text.toString(),
@@ -70,7 +71,21 @@ class NewPrestSFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         )
                     )
                 Navigation.findNavController(view).navigate(action)
-            }
+            }*/
+            val action = NewPrestSFragmentDirections.navigateFromNewPrestSFragmentToChoosePrestSImagesFragment(
+                NewPrestS(
+                    args.userId,
+                    binding.prestsTitle.text.toString(),
+                    category,
+                    binding.email.text.toString(),
+                    binding.phonenumber.text.toString(),
+                    binding.details.text.toString(),
+                    binding.district.text.toString(),
+                    binding.city.text.toString(),
+                    binding.municipality.text.toString()
+                )
+            )
+            Navigation.findNavController(view).navigate(R.id.choosePrestSImagesFragment)
         }
         return view
     }

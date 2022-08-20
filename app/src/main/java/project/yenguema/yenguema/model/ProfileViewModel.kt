@@ -1,22 +1,27 @@
 package project.yenguema.yenguema.model
 
 import android.app.Application
+import android.content.Context
+import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import project.yenguema.yenguema.R
+import project.yenguema.yenguema.entity.NewPrestS
 import project.yenguema.yenguema.entity.User
-import project.yenguema.yenguema.library.LogInResponse
-import project.yenguema.yenguema.library.UserInfos
-import project.yenguema.yenguema.library.UserInfosRespWrapper
-import project.yenguema.yenguema.library.baseURL
+import project.yenguema.yenguema.library.*
 import project.yenguema.yenguema.services.YenguemaService
+import project.yenguema.yenguema.services.changeUserAvatarRespMapper
 import project.yenguema.yenguema.services.getUserInfoResponse
+import project.yenguema.yenguema.services.newPrestSResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -64,6 +69,73 @@ class ProfileViewModel(app:Application):AndroidViewModel(app) {
         )
     }
 
+    fun changeUserAvatar(userEmail:String, context: Context, avatarParamName:String, uri:Uri): ChangeUserAvatarResponse?{
+        var changeResp:ChangeUserAvatarResponse?=null
+        val emailBody = userEmail.toRequestBody()
+        val body = prepareFilePart(context, avatarParamName, uri)
+        viewModelScope.launch(Dispatchers.IO){
+            val call = yenguemaService.changeUserAvatar(
+                emailBody,
+                body
+            )
+            call.enqueue(object : Callback<ChangeUserAvatarRespWrapper>{
+                override fun onResponse(
+                    call: Call<ChangeUserAvatarRespWrapper>,
+                    response: Response<ChangeUserAvatarRespWrapper>
+                ) {
+                    response.body()?.let {
+                        val resp = changeUserAvatarRespMapper(it)
+                        changeResp = resp
+                    }
+                }
+
+                override fun onFailure(call: Call<ChangeUserAvatarRespWrapper>, t: Throwable) {
+                    changeResp = null
+                    println("**************** onFailure ${t.message} *************")
+                }
+
+            })
+        }
+        return changeResp
+    }
+    fun newPrestS(newPrestS: NewPrestS, uriList:List<Uri>, context: Context): NewPrestSResponse{
+        var newPrestSResp:NewPrestSResponse?= null
+        val multipartBody = prepareFilesPart(context, "images", uriList)
+        viewModelScope.launch (Dispatchers.IO){
+            val call = yenguemaService.newPrestSQuery(
+                newPrestS.user_email,
+                newPrestS.activity_name,
+                newPrestS.category,
+                newPrestS.city,
+                newPrestS.municipality,
+                newPrestS.district,
+                newPrestS.email,
+                newPrestS.phone_number,
+                newPrestS.details,
+                multipartBody
+            )
+
+            call.enqueue(object : Callback<NewPrestSRespWrapper>{
+                override fun onResponse(
+                    call: Call<NewPrestSRespWrapper>,
+                    response: Response<NewPrestSRespWrapper>
+                ) {
+                    response.body()?.let {
+                        val resp = newPrestSResponse(it)
+                        newPrestSResp = resp
+                        println("******** ${newPrestSResp!!.status}*****")
+                    }
+                }
+
+                override fun onFailure(call: Call<NewPrestSRespWrapper>, t: Throwable) {
+                    newPrestSResp = null
+                    println("*********** on Failure ${t.message}*******")
+                }
+
+            })
+        }
+        return newPrestSResp!!
+    }
     fun getUserInfo(email:String): MutableLiveData<UserInfos> {
         viewModelScope.launch(Dispatchers.IO) {
             val call = yenguemaService.getUserInfos(email)

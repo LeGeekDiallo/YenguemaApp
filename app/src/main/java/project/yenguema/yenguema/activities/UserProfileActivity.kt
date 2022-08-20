@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.setPadding
 import androidx.fragment.app.commit
@@ -19,6 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 import project.yenguema.yenguema.R
 import project.yenguema.yenguema.databinding.ActivityUserProfileBinding
+import project.yenguema.yenguema.fragments.ChoosePrestSImagesFragment
 import project.yenguema.yenguema.fragments.DashboardFragment
 import project.yenguema.yenguema.fragments.PrestSFragment
 import project.yenguema.yenguema.fragments.UserInfoFragment
@@ -38,7 +42,6 @@ class UserProfileActivity : AppCompatActivity() {
         supportActionBar?.title = getString(R.string.profile)
         sharedPref = getSharedPreferences(getString(R.string.credentials), Context.MODE_PRIVATE)
         email = sharedPref.getString(getString(R.string.user_email_shared), null)
-
     }
 
 
@@ -70,6 +73,7 @@ class UserProfileActivity : AppCompatActivity() {
     private fun startAnActivity(intent: Intent){
         startActivity(intent)
     }
+
 
 
 }

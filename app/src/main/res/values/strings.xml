@@ -71,20 +71,23 @@
     <string name="emptyInput">This field should not be empty</string>
     <string name="wrongFormat">The phone number format is not valid</string>
     <string name="add_images">Last step, choose and add images of your work or a logo of your company. You can choose more than one image</string>
+    <string name="next">Next</string>
+    <string name="avatar_param_name">imageName</string>
     <string-array name="prests_category">
         <item>Artisanat</item>
         <item>Blanchisseur</item>
         <item>Boulangerie</item>
-        <item>Boutiquier</item>
         <item>Briqueterie</item>
         <item>Climatisation</item>
         <item>Cordonniers</item>
         <item>Déménagement</item>
-        <item>Electriciens</item>
         <item>Depannage</item>
+        <item>Jardinage</item>
+        <item>Electriciens</item>
         <item>Maçonnerie</item>
         <item>Menuisier</item>
         <item>Menuisier-metal</item>
+        <item>Peintre</item>
         <item>Plomberie</item>
         <item>Coiffeur/se</item>
         <item>Couture</item>

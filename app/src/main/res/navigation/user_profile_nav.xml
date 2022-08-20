@@ -85,5 +85,8 @@
         <argument
             android:name="prestS"
             app:argType="project.yenguema.yenguema.entity.NewPrestS" />
+        <action
+            android:id="@+id/go_back_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
     </fragment>
 </navigation>

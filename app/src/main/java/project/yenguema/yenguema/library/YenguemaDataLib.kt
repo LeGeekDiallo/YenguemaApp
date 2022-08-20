@@ -1,22 +1,69 @@
 package project.yenguema.yenguema.library
 
+import android.app.Activity
+import android.content.Context
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Parcelable
 import android.text.InputType.TYPE_CLASS_PHONE
 import android.widget.EditText
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
+import androidx.core.net.toFile
 import kotlinx.parcelize.Parcelize
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import project.yenguema.yenguema.entity.Ad
+import project.yenguema.yenguema.entity.NewPrestS
 import project.yenguema.yenguema.entity.PrestS
 import project.yenguema.yenguema.entity.User
+import project.yenguema.yenguema.utils.RealPathUtil
+import java.io.File
 import java.util.regex.Pattern
 
 private val PHONNUMBERPARTTERN: Pattern = Pattern.compile("^[6][2-9][0-9][0-9]{2}[0-9]{2}[0-9]{2}\$")
+const val READ_EXTERNAL_STORAGE = 0
+
 
 private fun phoneNumberCheck(input:EditText):Boolean{
     return PHONNUMBERPARTTERN.matcher(input.text.toString().trim()).matches()
 }
+fun requestPermission(context: Context, activity:Activity):Boolean{
+    if(ContextCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        != PackageManager.PERMISSION_GRANTED){
+        ActivityCompat.requestPermissions(
+            activity,
+            arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
+            READ_EXTERNAL_STORAGE
+        )
+        return false
+    }
+    return true
+}
+fun prepareFilesPart(context: Context, partName:String, uriList: List<Uri>):MutableList<MultipartBody.Part>{
+    val multipartBodyPartList = mutableListOf<MultipartBody.Part>()
+    for (uri in uriList){
+        val file = File(RealPathUtil.getRealPath(context, uri))
+        val requestFile = file.asRequestBody(context.contentResolver.getType(uri)?.toMediaTypeOrNull())
+        val multipartBodyItem = MultipartBody.Part.createFormData(partName, file.name, requestFile)
+        multipartBodyPartList.add(multipartBodyItem)
+    }
+    return multipartBodyPartList
+}
+fun prepareFilePart(context: Context, partName:String, uri: Uri):MultipartBody.Part{
+    val file = File(RealPathUtil.getRealPath(context, uri))
+    val requestFile = file.asRequestBody(context.contentResolver.getType(uri)?.toMediaTypeOrNull())
+    return MultipartBody.Part.createFormData(partName, file.name, requestFile)
+}
 fun formController(emptyMsg:String, wrongFormat:String, vararg inputs:EditText):Boolean{
     for (input in inputs){
         if(input.text.isEmpty()){
+            input.requestFocus()
             input.error = emptyMsg
             return false
         }
@@ -27,6 +74,20 @@ fun formController(emptyMsg:String, wrongFormat:String, vararg inputs:EditText):
     }
     return true
 }
+
+data class NewPrestSRespWrapper(
+    val resp:NewPrestSResponse
+)
+data class ChangeUserAvatarRespWrapper(
+    val resp:ChangeUserAvatarResponse
+)
+data class ChangeUserAvatarResponse(
+    val status: Boolean?
+)
+data class NewPrestSResponse(
+    val status: Boolean?
+)
+
 data class SignInRespWrapper(
     val resp: SignInResponse
 )

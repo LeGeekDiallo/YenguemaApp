@@ -1,45 +1,45 @@
 package project.yenguema.yenguema.fragments
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.squareup.picasso.Picasso
 import project.yenguema.yenguema.R
 import project.yenguema.yenguema.databinding.FragmentUserInfoBinding
+import project.yenguema.yenguema.library.READ_EXTERNAL_STORAGE
+import project.yenguema.yenguema.library.requestPermission
 import project.yenguema.yenguema.model.ProfileViewModel
+import project.yenguema.yenguema.utils.RealPathUtil
+import java.io.File
 
 /**
  * A simple [Fragment] subclass.
  */
 class UserInfoFragment : Fragment() {
     private val profileViewModel: ProfileViewModel by activityViewModels()
-    private lateinit var sharedPref: SharedPreferences
-    private var email: String? = null
-
+    private var _binding: FragmentUserInfoBinding?= null
+    private val binding get() = _binding!!
+    private val args:UserInfoFragmentArgs by navArgs()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_user_info, container, false)
-        sharedPref = requireContext().getSharedPreferences(getString(R.string.credentials), Context.MODE_PRIVATE)
-        email = sharedPref.getString(getString(R.string.user_email_shared), null)
-        val data = profileViewModel.getUserInfo(email!!).value
-        val username = view.findViewById<TextView>(R.id.user_name)
-        val userName = view.findViewById<EditText>(R.id.user_name_edit)
-        val userAv = view.findViewById<ImageView>(R.id.user_av)
-        val userEmail = view.findViewById<EditText>(R.id.user_email)
-        val userPhone = view.findViewById<EditText>(R.id.user_phone_number)
-        val user = data?.user_infos!!
-        username.text = user.name
-        userName.setText(user.name)
-        userEmail.setText(user.email)
-        userPhone.setText(user.phoneNumber)
+        _binding = FragmentUserInfoBinding.inflate(inflater, container, false)
+        val view = binding.root
+        val user = args.user
+        binding.userName.text = user.name
+        binding.userNameEdit.setText(user.name)
+        binding.userEmail.setText(user.email)
+        binding.userPhoneNumber.setText(user.phoneNumber)
         if(user.avatar.isNotEmpty()){
             val avatar = user.avatarURL+user.avatar
             Picasso.get()
@@ -47,9 +47,41 @@ class UserInfoFragment : Fragment() {
                 .error(R.drawable.user_av_default)
                 .fit()
                 .placeholder(R.drawable.user_av_default)
-                .into(userAv)
+                .into(binding.userAv)
+        }
+        binding.changeAvatar.setOnClickListener {
+            if (requestPermission(requireContext(), requireActivity()))
+                launchTheProcess()
         }
         return view
+    }
+    @Deprecated("Deprecated in Java")
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when(requestCode){
+            READ_EXTERNAL_STORAGE->{
+                if(grantResults.isNotEmpty() && grantResults[0]== PackageManager.PERMISSION_GRANTED){
+                    launchTheProcess()
+                }
+            }
+        }
+    }
+    private val launchProcess: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val uri = result?.data?.data as Uri
+                val resp = profileViewModel.changeUserAvatar(args.user.email, requireContext(), getString(R.string.avatar_param_name), uri)
+                println("*********** response ${resp?.status} *************")
+            }
+
+        }
+    private fun launchTheProcess() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "image/*"
+        launchProcess.launch(intent)
     }
 
 }

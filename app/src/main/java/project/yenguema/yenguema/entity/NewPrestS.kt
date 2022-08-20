@@ -6,6 +6,7 @@ import project.yenguema.yenguema.library.CreatedAt
 
 @Parcelize
 data class NewPrestS(
+    val user_email:String,
     val activity_name: String,
     val category:String,
     val email:String,
