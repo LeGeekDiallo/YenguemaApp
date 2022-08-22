@@ -3,10 +3,15 @@ package project.yenguema.yenguema.model
 import android.app.Application
 import android.content.Context
 import android.net.Uri
+import android.os.Handler
+import android.os.Looper
+import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.Navigation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
@@ -31,6 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ProfileViewModel(app:Application):AndroidViewModel(app) {
     private var resp: MutableLiveData<UserInfos> = MutableLiveData()
     val userInfos :LiveData<UserInfos> get() = resp
+    private var changeResp:ChangeUserAvatarResponse?=null
     private val httpClient: OkHttpClient
     private val retrofit: Retrofit
     private val yenguemaService: YenguemaService
@@ -69,39 +75,15 @@ class ProfileViewModel(app:Application):AndroidViewModel(app) {
         )
     }
 
-    fun changeUserAvatar(userEmail:String, context: Context, avatarParamName:String, uri:Uri): ChangeUserAvatarResponse?{
-        var changeResp:ChangeUserAvatarResponse?=null
-        val emailBody = userEmail.toRequestBody()
-        val body = prepareFilePart(context, avatarParamName, uri)
+    fun changeUserAvatar(userEmail:String, context: Context, avatarParamName:String, uri:Uri){
         viewModelScope.launch(Dispatchers.IO){
-            val call = yenguemaService.changeUserAvatar(
-                emailBody,
-                body
-            )
-            call.enqueue(object : Callback<ChangeUserAvatarRespWrapper>{
-                override fun onResponse(
-                    call: Call<ChangeUserAvatarRespWrapper>,
-                    response: Response<ChangeUserAvatarRespWrapper>
-                ) {
-                    response.body()?.let {
-                        val resp = changeUserAvatarRespMapper(it)
-                        changeResp = resp
-                    }
-                }
-
-                override fun onFailure(call: Call<ChangeUserAvatarRespWrapper>, t: Throwable) {
-                    changeResp = null
-                    println("**************** onFailure ${t.message} *************")
-                }
-
-            })
+            val response = uploadAvatar(userEmail, context, avatarParamName, uri, httpClient)
         }
-        return changeResp
     }
     fun newPrestS(newPrestS: NewPrestS, uriList:List<Uri>, context: Context): NewPrestSResponse{
         var newPrestSResp:NewPrestSResponse?= null
         val multipartBody = prepareFilesPart(context, "images", uriList)
-        viewModelScope.launch (Dispatchers.IO){
+        /*viewModelScope.launch (Dispatchers.IO){
             val call = yenguemaService.newPrestSQuery(
                 newPrestS.user_email,
                 newPrestS.activity_name,
@@ -133,7 +115,7 @@ class ProfileViewModel(app:Application):AndroidViewModel(app) {
                 }
 
             })
-        }
+        }*/
         return newPrestSResp!!
     }
     fun getUserInfo(email:String): MutableLiveData<UserInfos> {

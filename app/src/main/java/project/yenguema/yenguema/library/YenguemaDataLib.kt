@@ -6,18 +6,18 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Parcelable
 import android.text.InputType.TYPE_CLASS_PHONE
+import android.webkit.MimeTypeMap
 import android.widget.EditText
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.net.toFile
 import kotlinx.parcelize.Parcelize
-import okhttp3.MediaType
+import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import project.yenguema.yenguema.entity.Ad
 import project.yenguema.yenguema.entity.NewPrestS
 import project.yenguema.yenguema.entity.PrestS
@@ -33,6 +33,14 @@ const val READ_EXTERNAL_STORAGE = 0
 private fun phoneNumberCheck(input:EditText):Boolean{
     return PHONNUMBERPARTTERN.matcher(input.text.toString().trim()).matches()
 }
+fun getMimeType(file: File): String? {
+    var type: String? = null
+    val extension = MimeTypeMap.getFileExtensionFromUrl(file.path)
+    if (extension != null) {
+        type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension)
+    }
+    return type
+}
 fun requestPermission(context: Context, activity:Activity):Boolean{
     if(ContextCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
         != PackageManager.PERMISSION_GRANTED){
@@ -45,20 +53,32 @@ fun requestPermission(context: Context, activity:Activity):Boolean{
     }
     return true
 }
-fun prepareFilesPart(context: Context, partName:String, uriList: List<Uri>):MutableList<MultipartBody.Part>{
-    val multipartBodyPartList = mutableListOf<MultipartBody.Part>()
+fun prepareFilesPart(context: Context, partName:String, uriList: List<Uri>):MutableList<RequestBody>{
+    val multipartBodyPartList = mutableListOf<RequestBody>()
     for (uri in uriList){
         val file = File(RealPathUtil.getRealPath(context, uri))
-        val requestFile = file.asRequestBody(context.contentResolver.getType(uri)?.toMediaTypeOrNull())
-        val multipartBodyItem = MultipartBody.Part.createFormData(partName, file.name, requestFile)
+        val mimeType = getMimeType(file)
+        val requestFile = file.asRequestBody(mimeType?.toMediaTypeOrNull())
+        val multipartBodyItem = MultipartBody.Builder().setType(MultipartBody.FORM)
+            .addFormDataPart(partName, file.name, requestFile)
+            .build()
         multipartBodyPartList.add(multipartBodyItem)
     }
     return multipartBodyPartList
 }
-fun prepareFilePart(context: Context, partName:String, uri: Uri):MultipartBody.Part{
+fun prepareFilePart(context: Context, partName:String, uri: Uri, useremail: String):RequestBody{
     val file = File(RealPathUtil.getRealPath(context, uri))
-    val requestFile = file.asRequestBody(context.contentResolver.getType(uri)?.toMediaTypeOrNull())
-    return MultipartBody.Part.createFormData(partName, file.name, requestFile)
+    val mimeType = getMimeType(file)
+    val requestFile = file.asRequestBody(mimeType?.toMediaTypeOrNull())
+    return MultipartBody.Builder().setType(MultipartBody.FORM)
+        .addFormDataPart(partName, file.name, requestFile)
+        .addFormDataPart("user_email", useremail)
+        .build()
+}
+
+fun uploadAvatar(useremail: String, context: Context, avatarParamName:String, uri:Uri, client: OkHttpClient):Response{
+    val request:Request = Request.Builder().url(uploadURL).post(prepareFilePart(context, avatarParamName, uri, useremail)).build()
+    return client.newCall(request).execute()
 }
 fun formController(emptyMsg:String, wrongFormat:String, vararg inputs:EditText):Boolean{
     for (input in inputs){
@@ -140,3 +160,5 @@ data class CreatedAt(
     val timezone:String
 ):Parcelable
 const val baseURL = "https://www.leyenguema.com/"
+
+const val uploadURL = "https://www.leyenguema.com/security/upload_user_avatar"

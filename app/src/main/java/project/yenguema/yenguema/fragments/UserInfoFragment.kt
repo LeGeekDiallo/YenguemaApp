@@ -11,9 +11,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.squareup.picasso.Picasso
 import project.yenguema.yenguema.R
@@ -73,10 +75,9 @@ class UserInfoFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val uri = result?.data?.data as Uri
-                val resp = profileViewModel.changeUserAvatar(args.user.email, requireContext(), getString(R.string.avatar_param_name), uri)
-                println("*********** response ${resp?.status} *************")
+                profileViewModel.changeUserAvatar(args.user.email, requireContext(), getString(R.string.avatar_param_name), uri)
+                Navigation.findNavController(requireView()).navigate(R.id.dashboardFragment)
             }
-
         }
     private fun launchTheProcess() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)

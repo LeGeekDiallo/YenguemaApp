@@ -47,6 +47,6 @@ interface YenguemaService {
     @POST("security/upload_user_avatar")
     fun changeUserAvatar(
         @Part("user_email") userEmail: RequestBody,
-        @Part imageName: MultipartBody.Part
+        @Part("imageName") imageName: RequestBody
     ):Call<ChangeUserAvatarRespWrapper>
 }
