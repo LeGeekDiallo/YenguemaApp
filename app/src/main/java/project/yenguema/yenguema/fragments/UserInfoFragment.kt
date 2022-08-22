@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -76,7 +77,10 @@ class UserInfoFragment : Fragment() {
             if (result.resultCode == Activity.RESULT_OK) {
                 val uri = result?.data?.data as Uri
                 profileViewModel.changeUserAvatar(args.user.email, requireContext(), getString(R.string.avatar_param_name), uri)
-                Navigation.findNavController(requireView()).navigate(R.id.dashboardFragment)
+
+                Handler().postDelayed({
+                    Navigation.findNavController(requireView()).navigate(R.id.dashboardFragment)
+                }, 2000)
             }
         }
     private fun launchTheProcess() {
