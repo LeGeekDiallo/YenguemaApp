@@ -16,9 +16,11 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.launch
 import project.yenguema.yenguema.R
 import project.yenguema.yenguema.databinding.FragmentUserInfoBinding
 import project.yenguema.yenguema.library.READ_EXTERNAL_STORAGE
@@ -76,11 +78,17 @@ class UserInfoFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val uri = result?.data?.data as Uri
-                profileViewModel.changeUserAvatar(args.user.email, requireContext(), getString(R.string.avatar_param_name), uri)
+                profileViewModel.changeUserAvatar(args.user.email, requireContext(), getString(R.string.avatar_param_name), uri).observe(viewLifecycleOwner){
+                    if(it){
+                        Toast.makeText(requireContext(), "The avatar has been updated successfully", Toast.LENGTH_SHORT).show()
+                        Handler().postDelayed({
+                            Navigation.findNavController(requireView()).navigate(R.id.dashboardFragment)
+                        }, 3000)
+                    }else{
+                        Toast.makeText(requireContext(), "Something wrong with the update", Toast.LENGTH_SHORT).show()
+                    }
+                }
 
-                Handler().postDelayed({
-                    Navigation.findNavController(requireView()).navigate(R.id.dashboardFragment)
-                }, 2000)
             }
         }
     private fun launchTheProcess() {

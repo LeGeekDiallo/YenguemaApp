@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_na"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="project.yenguema.yenguema.fragments.HomeFragment"
+        android:label="Yenguema"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="project.yenguema.yenguema.fragments.LogInFragment"
+        android:label="@string/LogIn"
+        tools:layout="@layout/fragment_log_in" />
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="project.yenguema.yenguema.fragments.SignInFragment"
+        android:label="@string/signIn"
+        tools:layout="@layout/fragment_sign_in" />
+</navigation>

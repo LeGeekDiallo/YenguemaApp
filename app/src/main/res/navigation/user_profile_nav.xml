@@ -64,21 +64,44 @@
             android:name="user"
             app:argType="project.yenguema.yenguema.entity.User" />
         <action
-            android:id="@+id/navigate_to_newPrestSFragment"
-            app:destination="@id/newPrestSFragment" />
+            android:id="@+id/navigate_to_newPrestSFormStepOne"
+            app:destination="@id/newPrestSFormStepOne" />
     </fragment>
     <fragment
-        android:id="@+id/newPrestSFragment"
-        android:name="project.yenguema.yenguema.fragments.NewPrestSFragment"
-        android:label="fragment_new_prest_s"
-        tools:layout="@layout/fragment_new_prest_s" >
-        <argument
-            android:name="user_id"
-            app:argType="string" />
+        android:id="@+id/newPrestSFormStepOne"
+        android:name="project.yenguema.yenguema.fragments.form.prestSForm.NewPrestSFormStepOne"
+        android:label="fragment_new_prest_s_form_step_one"
+        tools:layout="@layout/fragment_new_prest_s_form_step_one" >
         <action
-            android:id="@+id/navigate_from_newPrestSFragment_to_choosePrestSImagesFragment"
+            android:id="@+id/navigate_to_newPrestSFormStepTwo"
+            app:destination="@id/newPrestSFormStepTwo" />
+        <argument
+            android:name="user_email"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/newPrestSFormStepTwo"
+        android:name="project.yenguema.yenguema.fragments.form.prestSForm.NewPrestSFormStepTwo"
+        android:label="fragment_new_prest_s_form_step_two"
+        tools:layout="@layout/fragment_new_prest_s_form_step_two" >
+        <action
+            android:id="@+id/navigate_to_newPrestSFormStepContact"
+            app:destination="@id/newPrestSFormStepContact" />
+        <argument
+            android:name="prestS"
+            app:argType="project.yenguema.yenguema.entity.NewPrestS" />
+    </fragment>
+    <fragment
+        android:id="@+id/newPrestSFormStepContact"
+        android:name="project.yenguema.yenguema.fragments.form.prestSForm.NewPrestSFormStepContact"
+        android:label="fragment_new_prest_s_form_step_contact"
+        tools:layout="@layout/fragment_new_prest_s_form_step_contact" >
+        <action
+            android:id="@+id/navigate_to_choosePrestSImagesFragment"
             app:destination="@id/choosePrestSImagesFragment" />
-
+        <argument
+            android:name="prestS"
+            app:argType="project.yenguema.yenguema.entity.NewPrestS" />
     </fragment>
     <fragment
         android:id="@+id/choosePrestSImagesFragment"
@@ -88,8 +111,5 @@
         <argument
             android:name="prestS"
             app:argType="project.yenguema.yenguema.entity.NewPrestS" />
-        <action
-            android:id="@+id/go_back_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
     </fragment>
 </navigation>

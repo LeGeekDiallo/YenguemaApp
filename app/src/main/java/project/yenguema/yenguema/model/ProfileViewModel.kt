@@ -5,6 +5,7 @@ import android.content.Context
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
+import android.os.Message
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
@@ -14,6 +15,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
@@ -32,17 +34,17 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.nio.channels.Channel
 
 class ProfileViewModel(app:Application):AndroidViewModel(app) {
     private var resp: MutableLiveData<UserInfos> = MutableLiveData()
-    val userInfos :LiveData<UserInfos> get() = resp
-    private var changeResp:ChangeUserAvatarResponse?=null
+    private var _response: MutableLiveData<Boolean> = MutableLiveData()
+    private val response:LiveData<Boolean> get() = _response
     private val httpClient: OkHttpClient
     private val retrofit: Retrofit
     private val yenguemaService: YenguemaService
     private val serviceTitles: MutableLiveData<List<String>> = MutableLiveData()
     private val serviceImgs: MutableLiveData<List<Int>> = MutableLiveData()
-
     init {
         httpClient = OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
@@ -74,12 +76,14 @@ class ProfileViewModel(app:Application):AndroidViewModel(app) {
             R.drawable.traveling
         )
     }
-
-    fun changeUserAvatar(userEmail:String, context: Context, avatarParamName:String, uri:Uri){
+    fun changeUserAvatar(userEmail:String, context: Context, avatarParamName:String, uri:Uri):LiveData<Boolean>{
         viewModelScope.launch(Dispatchers.IO){
             val response = uploadAvatar(userEmail, context, avatarParamName, uri, httpClient)
+            _response.postValue(response.isSuccessful)
         }
+        return response
     }
+
     fun newPrestS(newPrestS: NewPrestS, uriList:List<Uri>, context: Context): NewPrestSResponse{
         var newPrestSResp:NewPrestSResponse?= null
         val multipartBody = prepareFilesPart(context, "images", uriList)

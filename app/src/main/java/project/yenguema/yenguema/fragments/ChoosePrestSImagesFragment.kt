@@ -29,7 +29,6 @@ class ChoosePrestSImagesFragment : Fragment(), View.OnClickListener {
     private val binding get() = _binding!!
     private val uriList = mutableListOf<Uri>()
 
-    private val args:ChoosePrestSImagesFragmentArgs by navArgs()
     private val RESULT_CODE = 200
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,14 +38,14 @@ class ChoosePrestSImagesFragment : Fragment(), View.OnClickListener {
         _binding = FragmentChoosePrestSImagesBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        binding.registerBtn.setOnClickListener {
+        /*binding.registerBtn.setOnClickListener {
             val resp = profileViewModel.newPrestS(args.prestS, uriList, requireContext())
             if(resp.status != null && resp.status){
                 Navigation.findNavController(view).navigate(R.id.go_back_to_dashboardFragment)
             }else{
                 Toast.makeText(requireContext(), "something wrong", Toast.LENGTH_SHORT).show()
             }
-        }
+        }*/
         binding.chooseImg.setOnClickListener {
             if (requestPermission(requireContext(), requireActivity()))
                 chooseImage()

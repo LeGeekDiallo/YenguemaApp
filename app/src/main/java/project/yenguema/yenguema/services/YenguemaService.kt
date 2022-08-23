@@ -43,10 +43,4 @@ interface YenguemaService {
         @Part("images")images: List<MultipartBody.Part>
     ):Call<NewPrestSRespWrapper>
 
-    @Multipart
-    @POST("security/upload_user_avatar")
-    fun changeUserAvatar(
-        @Part("user_email") userEmail: RequestBody,
-        @Part("imageName") imageName: RequestBody
-    ):Call<ChangeUserAvatarRespWrapper>
 }

@@ -2,16 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
-
-    <item android:id="@+id/home"
+    <item android:id="@+id/homeFragment"
         android:title="@string/home"
         android:icon="@drawable/ic_home_24"
         app:showAsAction="ifRoom"/>
-    <item android:id="@+id/account"
+    <item android:id="@+id/logInFragment"
         android:title="@string/LogIn"
         android:icon="@drawable/ic_login"
         app:showAsAction="ifRoom"/>
-    <item android:id="@+id/sign_in"
+    <item android:id="@+id/signInFragment"
         android:title="@string/signIn"
         android:icon="@drawable/ic_signin_24"
         app:showAsAction="ifRoom"/>

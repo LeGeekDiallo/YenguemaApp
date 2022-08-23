@@ -1,6 +1,7 @@
 package project.yenguema.yenguema.fragments
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,8 +24,12 @@ class NoPrestSYetFragment : Fragment() {
     ): View {
         _binding = FragmentNoPrestSYetBinding.inflate(inflater, container, false)
         val view = binding.root
+        val inflate = TransitionInflater.from(requireContext())
+        val exitTransition = inflate.inflateTransition(R.transition.slide_in)
+        setExitTransition(exitTransition)
+        enterTransition = inflate.inflateTransition(R.transition.slide_out)
         binding.registration.setOnClickListener {
-            val action = NoPrestSYetFragmentDirections.navigateToNewPrestSFragment(args.user.email)
+            val action = NoPrestSYetFragmentDirections.navigateToNewPrestSFormStepOne(args.user.email)
             Navigation.findNavController(view).navigate(action)
         }
         return view

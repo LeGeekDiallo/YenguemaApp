@@ -306,7 +306,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/category/baseline_category_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/woman/baseline_woman_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -317,7 +317,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="0d41a1" />
-                            <entry key="outputName" value="ic_category" />
+                            <entry key="outputName" value="ic_woman" />
                           </map>
                         </option>
                       </PersistentState>
